@@ -1,6 +1,55 @@
 @import "tailwindcss";
 
-@theme {
+/*@theme {
   --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif,
     "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+}*/
+:root {
+  --font-heading: 'Oswald', sans-serif;
+  --font-body: 'Roboto', sans-serif;
+}
+
+body {
+  @apply bg-gray-200 text-black;
+  font-family: var(--font-body);
+}
+
+h1 {
+  font-size: 2rem;
+  font-family: var(--font-heading);
+}
+
+h2 {
+  font-size: 1.5rem;
+  font-family: var(--font-heading);
+}
+
+h3 {
+  font-size: 1.2rem;
+  font-family: var(--font-heading);
+}
+
+p {
+  font-size: 1rem;
+  font-family: var(--font-body);
+}
+
+.option-divider {
+  position: relative;
+  padding-left: 7%;
+  padding-right: 7%;
+}
+
+.option-divider::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background-color: rgba(0, 0, 0, 0.2);
+}
+
+.option-divider:last-child::after {
+  display: none;
 }

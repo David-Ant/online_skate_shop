@@ -14,6 +14,28 @@ datasource db {
     url      = env("DATABASE_URL")
 }
 
+// ENUMS
+
+enum Role {
+  CUSTOMER
+  ADMIN
+}
+
+enum ProductType {
+  DECK
+  WHEEL
+}
+
+enum OrderStatus {
+  PENDING
+  PPROCESSING
+  SHIPPED
+  DELIVERED
+  CANCELLED
+}
+
+// MODELS
+
 // Necessary for Next auth
 model Account {
     id                       String  @id @default(cuid())
@@ -50,6 +72,9 @@ model User {
     image         String?
     accounts      Account[]
     sessions      Session[]
+    shoppingCart  CartItem[]
+    orders        Order[]
+    role          Role      @default(CUSTOMER)
 }
 
 model VerificationToken {
@@ -58,4 +83,55 @@ model VerificationToken {
     expires    DateTime
 
     @@unique([identifier, token])
+}
+
+model Stock {
+  id           String   @id @default(cuid())
+  type         ProductType
+  cost         Float
+  name         String
+  brand        String
+  imageUrl     String
+
+  // Nullable fields for specific types of products
+  width        Float?   // Deck-specific
+  length       Float?   // Deck-specific
+  axelDistance Float?   // Deck-specific
+  diameter     Int?     // Wheel-specific
+  durometer    String?  // Wheel-specific
+
+  customDeckOrders   CustomOrder[] @relation("DeckStock")
+  customWheelOrders  CustomOrder[] @relation("WheelsStock")
+  cartItems        CartItem[]
+}
+
+model CustomOrder {
+    id              String   @id @default(cuid())
+    deck            Stock       @relation("DeckStock", fields: [deckId], references: [id])
+    deckId          String
+    wheels          Stock       @relation("WheelsStock", fields: [wheelsId], references: [id])
+    wheelsId        String
+    cost            Float       // calculated total cost of the custom order
+    cartItems  CartItem[] // Reverse relation for CartItem referencing CustomOrder
+}
+
+model CartItem {
+    id              String   @id @default(cuid())
+    user            User        @relation(fields: [userId], references: [id])
+    userId          String
+    stock           Stock?      @relation(fields: [stockId], references: [id])
+    stockId         String?
+    customOrder     CustomOrder?@relation(fields: [customOrderId], references: [id])
+    customOrderId   String?
+    quantity        Int         @default(1)
+    createdAt       DateTime @default(now())
+    updatedAt       DateTime @default(now()) @updatedAt
+}
+
+model Order {
+    id           String   @id @default(cuid())
+    date         DateTime
+    status       String
+    userId       String
+    user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 }

@@ -32,7 +32,7 @@ Follow our deployment guides for [Vercel](https://create.t3.gg/en/deployment/ver
 
 - Create a basic main page with mock data ✔️
 - Attach database to UI ✔️
-- Add Google authentication
-- Error management
+- Add Google authentication ✔️
+- Error management ✔️
 - Add pages and routing
 - Add an admin side dashboard

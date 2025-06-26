@@ -7,7 +7,13 @@ import "./src/env.js";
 /** @type {import("next").NextConfig} */
 const coreConfig = {
   images: {
-    domains: ['9gnhpfz58f.ufs.sh'],
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "9gnhpfz58f.ufs.sh",
+        pathname: "/**",
+      },
+    ],
   },
 };
 

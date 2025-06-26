@@ -5,7 +5,11 @@
 import "./src/env.js";
 
 /** @type {import("next").NextConfig} */
-const coreConfig = {};
+const coreConfig = {
+  images: {
+    domains: ['9gnhpfz58f.ufs.sh'],
+  },
+};
 
 import { withSentryConfig } from "@sentry/nextjs";
 

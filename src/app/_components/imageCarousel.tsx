@@ -4,11 +4,13 @@ import { useEffect, useState } from "react";
 import Image from "next/image";
 
 const mockImages = [
-    "/mock1.jpg",
-    "/mock2.jpg",
-    "/mock3.jpg",
-    "/mock4.jpg",
-    "/mock5.jpg",
+    "https://9gnhpfz58f.ufs.sh/f/tmaDM84wMO1yIUb8qk9QTWJIHa1qGbRLieElBAgYUoC2yDXn",
+    "https://9gnhpfz58f.ufs.sh/f/tmaDM84wMO1yyRVYD4wKXBP65Mm0rdsYnDeHi4zaVgpj8qJW",
+    "https://9gnhpfz58f.ufs.sh/f/tmaDM84wMO1yuy4Fm5NB98RK1yeZNcpY3EF0k24WJULXxoMb",
+    "https://9gnhpfz58f.ufs.sh/f/tmaDM84wMO1yIOiyvF9QTWJIHa1qGbRLieElBAgYUoC2yDXn",
+    "https://9gnhpfz58f.ufs.sh/f/tmaDM84wMO1y1d4UjHCEekC9uBbgNM4AJiaGqRhXdIYF2H1l",
+    "https://9gnhpfz58f.ufs.sh/f/tmaDM84wMO1yEpICyrfeotsnGNqAUOg4JVYk0PZE9zviTmWC",
+    "https://9gnhpfz58f.ufs.sh/f/tmaDM84wMO1yRog03vsTJh8EkRy2BIuCtVDK3An4PdGbp0Sg",
 ]
 
 export default function ImageCarousel() {

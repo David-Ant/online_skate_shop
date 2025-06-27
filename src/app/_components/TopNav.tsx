@@ -36,13 +36,13 @@ export function TopNav() {
             <h2>
                 <nav className="flex relative bg-white text-black items-center justify-between w-full py-2 pl-[15%] pr-[5%] font-semibold shadow-md">
                     <nav className="flex bg-white text-black items-center w-1/2 font-semibold">
-                        <Link className="option-divider" href="/decks">
+                        <Link className="option-divider" href="/shopping/decks">
                             <button>Decks</button>
                         </Link>
-                        <Link className="option-divider" href="/wheels">
+                        <Link className="option-divider" href="/shopping/wheels">
                             <button>Wheels</button>
                         </Link>
-                        <Link className="option-divider" href="/customSetup">
+                        <Link className="option-divider" href="/shopping/customSetup">
                             <button>Custom Setup</button>
                         </Link>
                     </nav>

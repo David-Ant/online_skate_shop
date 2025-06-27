@@ -1,14 +1,11 @@
 "use client";
 
-import { useParams, useSearchParams } from "next/navigation";
+import { useSearchParams } from "next/navigation";
 import { api } from "~/trpc/react";
 import Link from "next/link";
 
 export default function CategoryPage() {
 
-  /*const { query } = useParams();
-  const searchQuery = Array.isArray(query) ? query[0] : query || "";
-*/
   const searchParams = useSearchParams();
   const query = searchParams.get("query") || "";
 

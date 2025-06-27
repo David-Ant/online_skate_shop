@@ -10,7 +10,7 @@ export function SearchWithButton() {
 
   const handleSearch = () => {
     if (searchTerm.trim()) {
-      router.push(`/search?query=${encodeURIComponent(searchTerm)}`);
+      router.push(`/shopping/search?query=${encodeURIComponent(searchTerm)}`);
     }
   };
 

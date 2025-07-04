@@ -42,7 +42,7 @@ export function TopNav() {
                         <Link className="option-divider" href="/shopping/wheels">
                             <button>Wheels</button>
                         </Link>
-                        <Link className="option-divider" href="/shopping/customSetup">
+                        <Link className="option-divider" href="/customSetup">
                             <button>Custom Setup</button>
                         </Link>
                     </nav>

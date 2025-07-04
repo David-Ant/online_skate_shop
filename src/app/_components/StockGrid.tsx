@@ -1,0 +1,29 @@
+import type { stockItem } from "~/types/stock";
+
+type StockGridProps = {
+  items: stockItem[];
+  onSelect: (item: stockItem) => void;
+  filterText?: string;
+};
+
+export default function StockGrid({ items, onSelect, filterText = "" }: StockGridProps) {
+  return (
+    <div className="flex flex-wrap gap-6">
+      {items
+        .filter((item) =>
+          item.name.toLowerCase().includes(filterText.toLowerCase())
+        )
+        .map((item) => (
+          <button key={item.id} onClick={() => onSelect(item)}>
+            <div className="flex w-48 flex-col">
+              <img src={item.imageUrl} alt={item.name} />
+              <div className="bg-gradient-to-b from-white to-transparent p-3">
+                <div className="text-sm">{item.name}</div>
+                <div className="text-sm">{item.cost}€</div>
+              </div>
+            </div>
+          </button>
+        ))}
+    </div>
+  );
+}

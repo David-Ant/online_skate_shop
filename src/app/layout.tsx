@@ -14,8 +14,8 @@ export const metadata: Metadata = {
 
 const oswald = Oswald({
   subsets: ["latin"],
-  weight: ["400", "700"], // You can choose weights (normal, bold)
-  variable: "--font-heading", // Assign a custom CSS variable
+  weight: ["400", "700"],
+  variable: "--font-heading",
 });
 
 export default function RootLayout({

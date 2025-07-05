@@ -35,6 +35,6 @@ Follow our deployment guides for [Vercel](https://create.t3.gg/en/deployment/ver
 - Add Google authentication ✔️
 - Error management ✔️
 - Add pages and routing ✔️
-- Make modal's search bar functional
+- Make modal's search bar functional ✔️
 - Make filters functional
 - Add an admin side dashboard

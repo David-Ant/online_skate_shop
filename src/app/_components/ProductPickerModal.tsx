@@ -41,8 +41,8 @@ export default function ProductPickerModal({
                             />
                         </div>
                     </div>
-                    <main className="flex max-w-[450px] overflow-y-auto">
-                        <StockGrid items={content} onSelect={handleStockSubmit} />
+                    <main className="flex-1 max-w-[450px] overflow-y-scroll w-full">
+                        <StockGrid items={content} onSelect={handleStockSubmit} filterText={search}/>
                     </main>
                 </div>
             </Modal>

@@ -36,5 +36,6 @@ Follow our deployment guides for [Vercel](https://create.t3.gg/en/deployment/ver
 - Error management ✔️
 - Add pages and routing ✔️
 - Make modal's search bar functional ✔️
-- Make filters functional
+- Make filters functional ✔️
+- Add filters sidebar to shopping pages
 - Add an admin side dashboard

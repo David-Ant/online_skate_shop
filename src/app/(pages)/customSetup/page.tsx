@@ -4,9 +4,6 @@ import { api } from "~/trpc/react";
 import { useState } from "react";
 import ProductPickerModal from "~/app/_components/ProductPickerModal";
 import CustomOrderButton from "~/app/_components/CustomOrderButton";
-import DeckFilters from "~/app/_components/filters/DeckFilters";
-import WheelFilters from "~/app/_components/filters/WheelFilters";
-
 import type { stockItem } from "~/types/stock";
 
 export const dynamic = "force-dynamic";
@@ -116,7 +113,7 @@ export default function ProductPage() {
                 <ProductPickerModal
                     open={deckModalOpen}
                     onClose={() => setDeckModalOpen(false)}
-                    filters={<DeckFilters stock={deckStock ? deckStock : []} />}
+                    filterType="DECK"
                     content={deckStock || []}
                     handleStockSubmit={handleDeckSubmit}
                 />
@@ -125,7 +122,7 @@ export default function ProductPage() {
                 <ProductPickerModal
                     open={wheelsModalOpen}
                     onClose={() => setWheelsModalOpen(false)}
-                    filters={<WheelFilters stock={wheelStock ? wheelStock : []} />}
+                    filterType="WHEEL"
                     content={wheelStock || []}
                     handleStockSubmit={handleWheelsSubmit}
                 />

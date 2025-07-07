@@ -1,18 +1,39 @@
 import type { stockItem } from "~/types/stock";
 
-export default function DeckFilters({ stock }: { stock: stockItem[] }) {
+type DeckFiltersProps = {
+    stock: stockItem[];
+    filters: {
+        brands: Set<string>;
+        widths: Set<number>;
+    };
+    onToggleBrand: (brand: string) => void;
+    onToggleWidth: (width: number) => void;
+}
 
-    const brandFilters = [...new Set(stock.map(item => item.brand))];
-    const widthFilters = [...new Set(stock.map(item => item.width))];
+export default function DeckFilters({
+    stock,
+    filters,
+    onToggleBrand,
+    onToggleWidth,
+}: DeckFiltersProps) {
+
+    const allBrands = [...new Set(stock.map(item => item.brand))];
+    const allWidths = [...new Set(stock.map(item => item.width))];
 
     return (
         <div>
-            
+
             <h3 className="text-lg font-bold">Brand</h3>
             <ul>
-                {brandFilters.map((brand) => (
+                {allBrands.map((brand) => (
                     <li className="py-1 flex items-center" key={brand}>
-                        <input className="mr-2" type="checkbox" id={brand} />
+                        <input
+                            className="mr-2"
+                            type="checkbox"
+                            id={brand}
+                            checked={filters.brands.has(brand)}
+                            onChange={() => onToggleBrand(brand)}
+                        />
                         <label htmlFor={brand}>{brand}</label>
                     </li>
                 ))}
@@ -20,12 +41,20 @@ export default function DeckFilters({ stock }: { stock: stockItem[] }) {
 
             <h3 className="text-lg font-bold">Width</h3>
             <ul>
-                {widthFilters.map((width) => (
-                    <li className="py-1 flex items-center" key={width}>
-                        <input className="mr-2" type="checkbox" id={`width-${width}`} />
-                        <label htmlFor={`width-${width}`}>{width}"</label>
-                    </li>
-                ))}
+                {allWidths
+                    .filter((width): width is number => width !== null)
+                    .map((width) => (
+                        <li className="py-1 flex items-center" key={width}>
+                            <input
+                                className="mr-2"
+                                type="checkbox"
+                                id={`width-${width}`}
+                                checked={filters.widths.has(width)}
+                                onChange={() => onToggleWidth(width)}
+                            />
+                            <label htmlFor={`width-${width}`}>{width}"</label>
+                        </li>
+                    ))}
             </ul>
         </div>
     );

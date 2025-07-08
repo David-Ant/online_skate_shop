@@ -1,10 +1,15 @@
 "use client";
 
-import Link from "next/link";
-
 import { api } from "~/trpc/react";
+import router from "next/router";
+import FilteredStock from "~/app/_components/filters/FilteredStock";
+import type { stockItem } from "~/types/stock";
 
 export default function ProductPage() {
+
+    const handleOnClick = (image: stockItem) => {
+        router.push(`/item/${image.id}`);
+    };
 
     const { data: wheelStock, isLoading, error } = api.stock.getStockByType.useQuery({
         type: "WHEEL",
@@ -17,20 +22,8 @@ export default function ProductPage() {
     }
     if (wheelStock) {
         return (
-            <main className="">
-                <div className="flex flex-wrap gap-6">
-                    {wheelStock.map((image) => (
-                        <Link href={`/item/${image.id}`} key={image.id}>
-                            <div key={image.id} className="flex w-48 flex-col">
-                                <img src={image.imageUrl} />
-                                <div className="bg-gradient-to-b from-white to-transparent p-3">
-                                    <div className="text-sm">{image.name}</div>
-                                    <div>{image.cost}€</div>
-                                </div>
-                            </div>
-                        </Link>
-                    ))}
-                </div>
+            <main>
+                <FilteredStock filterType={"WHEEL"} stock={wheelStock} handleStockSubmit={handleOnClick}/>
             </main>
         );
     }

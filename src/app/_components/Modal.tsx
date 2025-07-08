@@ -11,7 +11,7 @@ export default function Modal({ open, onClose, children }: PropTypes) {
     <div onClick={onClose}
       className={`fixed inset-0 flex items-center justify-center bg-black/20 transition-all ${open ? "visible" : "invisible"}`}>
       <div onClick={(e) => e.stopPropagation()}
-        className={`fixed flex flex-row overflow-hidden bg-white rounded-lg shadow-lg transition-all duration-300 ${open
+        className={`fixed flex flex-col overflow-hidden bg-white rounded-lg shadow-lg transition-all duration-300 ${open
           ? "opacity-100 scale-100"
           : "opacity-0 scale-110"
           } w-[70%] max-w-[600px] h-[60%] max-h-[500px]`}>

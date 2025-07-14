@@ -1,6 +1,7 @@
 import { PrismaAdapter } from "@auth/prisma-adapter";
 import { type DefaultSession, type NextAuthConfig } from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
+import Google from "next-auth/providers/google";
 
 import { db } from "~/server/db";
 
@@ -14,15 +15,17 @@ declare module "next-auth" {
   interface Session extends DefaultSession {
     user: {
       id: string;
+      isAdmin: boolean;
       // ...other properties
       // role: UserRole;
     } & DefaultSession["user"];
   }
 
-  // interface User {
-  //   // ...other properties
-  //   // role: UserRole;
-  // }
+  interface User {
+     // ...other properties
+     // role: UserRole;
+    isAdmin?: boolean | null;
+}
 }
 
 /**
@@ -32,7 +35,11 @@ declare module "next-auth" {
  */
 export const authConfig = {
   providers: [
-    GoogleProvider,
+    Google({
+      profile(profile) {
+        return { isAdmin: profile.isAdmin ?? false, ...profile}
+      }
+    }),
     /**
      * ...add more providers here.
      *
@@ -45,12 +52,19 @@ export const authConfig = {
   ],
   adapter: PrismaAdapter(db),
   callbacks: {
-    session: ({ session, user }) => ({
+    session({ session, user }) {
+      session.user.isAdmin = user.isAdmin ?? false;
+      session.user.id = user.id;
+      return session
+    },
+  },
+/*    session: ({ session, user }) => ({
       ...session,
       user: {
         ...session.user,
         id: user.id,
       },
     }),
-  },
+  },*/
+
 } satisfies NextAuthConfig;

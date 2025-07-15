@@ -5,7 +5,6 @@ import Link from 'next/link';
 import { HiOutlineShoppingCart } from "react-icons/hi";
 import { SearchWithButton } from "./SearchButton";
 import SignInButton from "./SignInButton";
-import { SessionProvider } from "next-auth/react";
 import { AnimatedButton } from "./AnimatedButton";
 
 export function TopNav() {
@@ -22,14 +21,12 @@ export function TopNav() {
                         </button>
                     </Link>
                     <div className="flex gap-4">
-                        <SessionProvider>
-                            <SignInButton />
-                            <Link href="/shoppingCart">
-                                <AnimatedButton>
-                                    <HiOutlineShoppingCart size={40} />
-                                </AnimatedButton>
-                            </Link>
-                        </SessionProvider>
+                        <SignInButton />
+                        <Link href="/shoppingCart">
+                            <AnimatedButton>
+                                <HiOutlineShoppingCart size={40} />
+                            </AnimatedButton>
+                        </Link>
                     </div>
                 </nav>
             </h1>

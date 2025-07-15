@@ -4,6 +4,7 @@ import { type Metadata } from "next";
 import { Oswald } from "next/font/google";
 
 import { TRPCReactProvider } from "~/trpc/react";
+import { SessionProvider } from "next-auth/react";
 import { TopNav } from "./_components/TopNav";
 
 export const metadata: Metadata = {
@@ -25,8 +26,10 @@ export default function RootLayout({
     <html lang="en" className={`font-sans ${oswald.variable} flex flex-col`}>
       <body>
         <TRPCReactProvider>
-          <TopNav />
-          {children}
+          <SessionProvider>
+            <TopNav />
+            {children}
+          </SessionProvider>
         </TRPCReactProvider>
       </body>
     </html>

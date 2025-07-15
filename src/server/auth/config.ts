@@ -1,7 +1,6 @@
 import { PrismaAdapter } from "@auth/prisma-adapter";
 import { type DefaultSession, type NextAuthConfig } from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
-import Google from "next-auth/providers/google";
 
 import { db } from "~/server/db";
 
@@ -35,9 +34,15 @@ declare module "next-auth" {
  */
 export const authConfig = {
   providers: [
-    Google({
+    GoogleProvider({
       profile(profile) {
-        return { isAdmin: profile.isAdmin ?? false, ...profile}
+        return {
+          id: profile.id,
+          name: profile.name,
+          email: profile.email,
+          image: profile.picture,
+          isAdmin: profile.isAdmin ?? false
+        };
       }
     }),
     /**

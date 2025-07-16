@@ -6,8 +6,12 @@ import { HiOutlineShoppingCart } from "react-icons/hi";
 import { SearchWithButton } from "./SearchButton";
 import SignInButton from "./SignInButton";
 import { AnimatedButton } from "./AnimatedButton";
+import { auth } from "~/server/auth";
 
-export function TopNav() {
+export async function TopNav() {
+    
+    const session = await auth();
+
     return (
         <header>
             <h1>
@@ -33,6 +37,12 @@ export function TopNav() {
             <h2>
                 <nav className="flex relative bg-white text-black items-center justify-between w-full py-2 pl-[15%] pr-[5%] font-semibold shadow-md">
                     <nav className="flex bg-white text-black items-center w-1/2 font-semibold">
+                        {/* If the user is an admin, show the admin panel link */}
+                        {session?.user?.isAdmin && (
+                            <Link className="option-divider" href="/adminPanel">
+                                <button className="option-divider">Admin Panel</button>
+                            </Link>
+                        )}
                         <Link className="option-divider" href="/shopping/decks">
                             <button>Decks</button>
                         </Link>

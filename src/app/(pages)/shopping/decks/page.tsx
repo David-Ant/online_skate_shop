@@ -1,11 +1,13 @@
 "use client";
 
 import { api } from "~/trpc/react";
-import router from "next/router";
+import { useRouter } from "next/navigation";
 import FilteredStock from "~/app/_components/filters/FilteredStock";
 import type { stockItem } from "~/types/stock";
 
 export default function ProductPage() {
+
+    const router = useRouter();
 
     const handleOnClick = (image: stockItem) => {
         router.push(`/item/${image.id}`);

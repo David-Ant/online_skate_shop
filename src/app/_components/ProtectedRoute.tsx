@@ -1,15 +1,11 @@
-import { useSession } from "next-auth/react";
+import { auth } from "~/server/auth";
 import { redirect } from "next/navigation";
 
-const ProtectedRoute = ({children}: { children: React.ReactNode }) => {
+const ProtectedRoute = async ({children}: { children: React.ReactNode }) => {
 
-  const { data: session, status } = useSession();
+  const session = await auth();
   
-  if (status === "loading") {
-    return null;
-  }
-
-  if (!session || !session.user.isAdmin) {
+  if (!session || !session.user?.isAdmin) {
     redirect("/");
   }
 

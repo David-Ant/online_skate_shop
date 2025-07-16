@@ -57,19 +57,14 @@ export const authConfig = {
   ],
   adapter: PrismaAdapter(db),
   callbacks: {
-    session({ session, user }) {
-      session.user.isAdmin = user.isAdmin ?? false;
-      session.user.id = user.id;
-      return session
-    },
-  },
-/*    session: ({ session, user }) => ({
+    session: ({ session, user }) => ({
       ...session,
       user: {
         ...session.user,
         id: user.id,
+        isAdmin: user.isAdmin ?? false,
       },
     }),
-  },*/
+  },
 
 } satisfies NextAuthConfig;

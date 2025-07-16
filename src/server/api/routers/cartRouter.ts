@@ -166,4 +166,14 @@ export const cartRouter = createTRPCRouter({
     });
   }),
 
+  createOrder: protectedProcedure.mutation(async ({ ctx }) => {
+    return db.order.create({
+      data: {
+        date: new Date(),
+        status: "PENDING",
+        userId: ctx.session.user.id,
+      },
+    });
+  }),
+
 });

@@ -45,6 +45,19 @@ function CartContent() {
     }
   };
 
+  const createOrder = api.cart.createOrder.useMutation({
+    onSuccess: () => {
+      alert("Order pending.");
+    },
+    onError: (error) => {
+      console.error('Failed to set order', error);
+    },
+  });
+
+  const handleCheckout = () => {
+    createOrder.mutate();
+  };
+
   if (!session) {
     return (
       <div>
@@ -76,7 +89,7 @@ function CartContent() {
         {cartItems.map((item) => (
           <li key={item.id} className="flex justify-between items-center py-4 border-b border-gray-300 last:border-b-0">
             <div className="flex flex-row items-center">
-              <img src={item.stock?.imageUrl || ""} className="w-32 h-32 mr-4"/>
+              <img src={item.stock?.imageUrl || ""} className="w-32 h-32 mr-4" />
               <div className="flex flex-col gap-1">
                 <h2 className="text-lg font-medium m-0 mb-1">{item.stock?.name || "Custom Order"}</h2>
                 <p className="text-sm text-gray-600 m-0">Price: {item.stock?.cost || item.customOrder?.cost}€</p>
@@ -98,7 +111,12 @@ function CartContent() {
       </ul>
       <div className="mt-8 pt-4 border-t-2 border-gray-200 text-right">
         <p className="text-lg font-semibold m-0">Total: {calculateTotal(cartItems)}€</p>
-        <button className="mt-4 px-8 py-3 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition-colors duration-300">Proceed to Checkout</button>
+        <button
+          className="mt-4 px-8 py-3 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition-colors duration-300"
+          onClick={handleCheckout}
+        >
+          Proceed to Checkout
+        </button>
       </div>
     </div>
   );

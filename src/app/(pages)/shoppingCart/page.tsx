@@ -3,13 +3,10 @@
 import { useSession } from "next-auth/react";
 import { useState } from "react";
 import { api } from "~/trpc/react";
-import { SessionProvider } from "next-auth/react";
 
 export default function CartPage() {
   return (
-    <SessionProvider>
-      <CartContent />
-    </SessionProvider>
+    <CartContent />
   );
 }
 
@@ -89,7 +86,23 @@ function CartContent() {
         {cartItems.map((item) => (
           <li key={item.id} className="flex justify-between items-center py-4 border-b border-gray-300 last:border-b-0">
             <div className="flex flex-row items-center">
-              <img src={item.stock?.imageUrl || ""} className="w-32 h-32 mr-4" />
+              {item.stock ? (
+                <img src={item.stock.imageUrl} className="w-32 h-32 mr-4" />
+              ) : item.customOrder ? (
+                <div className="flex items-center mr-4">
+                  <img
+                    src={item.customOrder.deck?.imageUrl || ""}
+                    className="w-32 h-32"
+                    alt="Deck"
+                  />
+                  <span className="mx-2 text-xl font-bold">+</span>
+                  <img
+                    src={item.customOrder.wheels?.imageUrl || ""}
+                    className="w-32 h-32"
+                    alt="Wheels"
+                  />
+                </div>
+              ) : null}
               <div className="flex flex-col gap-1">
                 <h2 className="text-lg font-medium m-0 mb-1">{item.stock?.name || "Custom Order"}</h2>
                 <p className="text-sm text-gray-600 m-0">Price: {item.stock?.cost || item.customOrder?.cost}€</p>

@@ -39,5 +39,5 @@ Follow our deployment guides for [Vercel](https://create.t3.gg/en/deployment/ver
 - Make filters functional ✔️
 - Add filters sidebar to shopping pages ✔️
 - Add an admin side dashboard ✔️
-- Fix custom order images in shopping cart
+- Fix custom order images in shopping cart ✔️
 - Properly finish the main page

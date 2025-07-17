@@ -158,7 +158,12 @@ export const cartRouter = createTRPCRouter({
       where: { userId },
       include: {
         stock: true,
-        customOrder: true,
+        customOrder: {
+          include: {
+            deck: true,
+            wheels: true,
+          },
+        },
       },
       orderBy: {
         createdAt: "asc",

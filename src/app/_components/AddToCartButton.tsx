@@ -20,7 +20,11 @@ const AddToCartButton = ({ itemId }: { itemId: string }) => {
   };
 
   return (
-    <button onClick={handleClick} disabled={loading}>
+    <button
+      onClick={handleClick}
+      disabled={loading}
+      className="px-8 py-3 bg-blue-500 text-white rounded-md text-base font-semibold cursor-pointer transition-colors duration-300 hover:bg-blue-700"
+    >
       {loading ? "Adding..." : "Add to Cart"}
     </button>
   );

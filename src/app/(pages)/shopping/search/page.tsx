@@ -21,7 +21,7 @@ export default function CategoryPage() {
   if (filteredStock)
     return (
       <main>
-        <div className="flex flex-wrap gap-6">
+        <div className="flex flex-wrap pl-[20%] pr-[20%]">
           {filteredStock.map((image) => (
             <Link href={`/item/${image.id}`} key={image.id}>
               <div key={image.id} className="flex w-48 flex-col">

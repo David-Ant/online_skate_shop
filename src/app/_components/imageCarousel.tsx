@@ -50,7 +50,7 @@ export default function ImageCarousel() {
             : mockImages;
 
     return (
-        <div className="relative w-full max-w-3xl h-64 mx-auto overflow-hidden rounded-2xl shadow-lg">
+        <div className="relative w-[60%] aspect-[2/1] mx-auto overflow-hidden rounded-2xl shadow-lg">
             <div
                 className="flex w-full h-full"
                 style={{
@@ -64,8 +64,8 @@ export default function ImageCarousel() {
                         src={src}
                         alt={`Slide ${i + 1}`}
                         width={1200}
-                        height={400}
-                        className="w-full h-64 object-cover flex-shrink-0"
+                        height={900}
+                        className="w-full h-full object-cover flex-shrink-0"
                         priority={i === 0}
                     />
                 ))}

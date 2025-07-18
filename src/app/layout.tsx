@@ -7,6 +7,7 @@ import { TRPCReactProvider } from "~/trpc/react";
 import { SessionProvider } from "next-auth/react";
 import { HydrateClient } from "~/trpc/server";
 import { TopNav } from "./_components/TopNav";
+import { Footer } from "./_components/Footer";
 
 export const metadata: Metadata = {
   title: "Online Skate Shop",
@@ -24,13 +25,16 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" className={`font-sans ${oswald.variable} flex flex-col`}>
-      <body>
+    <html lang="en" className={`font-sans ${oswald.variable}`}>
+      <body className="flex flex-col min-h-screen">
         <TRPCReactProvider>
           <HydrateClient>
             <SessionProvider>
               <TopNav />
-              {children}
+              <main className="flex-grow">
+                {children}
+              </main>
+              <Footer/>
             </SessionProvider>
           </HydrateClient>
         </TRPCReactProvider>

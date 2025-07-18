@@ -40,4 +40,6 @@ Follow our deployment guides for [Vercel](https://create.t3.gg/en/deployment/ver
 - Add filters sidebar to shopping pages ✔️
 - Add an admin side dashboard ✔️
 - Fix custom order images in shopping cart ✔️
-- Properly finish the main page
+- Properly finish the main page ✔️
+- Add a dark mode
+- Let the admin see which products are in an order

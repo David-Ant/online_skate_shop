@@ -1,0 +1,42 @@
+"use client";
+
+import { useSearchParams } from "next/navigation";
+import { api } from "~/trpc/react";
+import Link from "next/link";
+import Image from "next/image";
+
+export default function SearchResults() {
+
+  const searchParams = useSearchParams();
+  const query = searchParams.get("query") ?? "";
+
+  const { data: filteredStock, isLoading, error } = api.stock.filterStock.useQuery({
+    query,
+  });
+
+  if (isLoading) return <div>Loading...</div>
+  if (error) {
+    console.error("Search error:", error);
+    return <div>Error: {error.message}</div>;
+  }
+  if (filteredStock)
+    return (
+      <main>
+        <div className="flex flex-wrap pl-[20%] pr-[20%]">
+          {filteredStock.map((image) => (
+            <Link href={`/item/${image.id}`} key={image.id}>
+              <div key={image.id} className="flex w-48 flex-col">
+                <Image
+                src={image.imageUrl}
+                alt={image.name}
+                />
+                <div className="bg-gradient-to-b from-white to-transparent p-3">
+                  <div className="text-sm">{image.name}</div>
+                </div>
+              </div>
+            </Link>
+          ))}
+        </div>
+      </main>
+    );
+}

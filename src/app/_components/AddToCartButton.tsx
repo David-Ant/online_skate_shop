@@ -14,6 +14,7 @@ const AddToCartButton = ({ itemId }: { itemId: string }) => {
       alert("Item added to cart!");
     } catch (error) {
       alert("Failed to add item to cart.");
+      console.error("Error adding item to cart:", error);
     } finally {
       setLoading(false);
     }

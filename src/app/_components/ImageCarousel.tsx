@@ -28,7 +28,6 @@ export default function ImageCarousel() {
     useEffect(() => {
         const totalSlides = mockImages.length;
 
-        console.log("proc" + isTransitioning);
         if (index === totalSlides) {
             const timeout = setTimeout(() => {
                 setIsTransitioning(false);
@@ -42,7 +41,7 @@ export default function ImageCarousel() {
             }, 1000);
             return () => clearTimeout(waitForAnim);
         }
-    }, [index]);
+    }, [index, isTransitioning]);
 
     const imagesToRender: string[] =
         mockImages.length > 0

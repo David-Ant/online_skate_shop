@@ -3,11 +3,12 @@
 import { useSearchParams } from "next/navigation";
 import { api } from "~/trpc/react";
 import Link from "next/link";
+import Image from "next/image";
 
 export default function CategoryPage() {
 
   const searchParams = useSearchParams();
-  const query = searchParams.get("query") || "";
+  const query = searchParams.get("query") ?? "";
 
   const { data: filteredStock, isLoading, error } = api.stock.filterStock.useQuery({
     query,
@@ -25,7 +26,10 @@ export default function CategoryPage() {
           {filteredStock.map((image) => (
             <Link href={`/item/${image.id}`} key={image.id}>
               <div key={image.id} className="flex w-48 flex-col">
-                <img src={image.imageUrl} />
+                <Image
+                src={image.imageUrl}
+                alt={image.name}
+                />
                 <div className="bg-gradient-to-b from-white to-transparent p-3">
                   <div className="text-sm">{image.name}</div>
                 </div>

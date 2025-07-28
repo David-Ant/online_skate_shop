@@ -4,7 +4,7 @@ import { db } from "~/server/db";
 
 export const adminRouter = createTRPCRouter({
 
-  getOrders: protectedProcedure.query(async ({ ctx }) => {
+  getOrders: protectedProcedure.query(async () => {
     return await db.order.findMany();
   }),
 

@@ -11,3 +11,16 @@ export type stockItem = {
     diameter: number | null;
     durometer: string | null;
 };  
+
+export type customOrderItem = {
+    id: string;
+    cost: number;
+    deck: stockItem;
+    wheels: stockItem;
+}
+
+export type cartItem = {
+    id: string;
+    stock: stockItem | null;
+    customOrder: customOrderItem | null;
+};

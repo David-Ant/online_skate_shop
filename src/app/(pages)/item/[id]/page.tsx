@@ -3,11 +3,12 @@
 import { api } from "~/trpc/react";
 import { useParams } from "next/navigation";
 import AddToCartButton from "~/app/_components/AddToCartButton";
+import Image from "next/image";
 
 export default function ItemPage() {
 
   const { id } = useParams();
-  const verifiedId = Array.isArray(id) ? id[0] : id || "";
+  const verifiedId = Array.isArray(id) ? id[0] : id ?? "";
 
   const { data: item, isLoading, error } = api.stock.getItemById.useQuery({
     id: verifiedId || "",
@@ -25,7 +26,7 @@ export default function ItemPage() {
           <h1 className="text-center font-bold">{item.name}</h1>
 
           {/* Image */}
-          <img
+          <Image
             src={item.imageUrl}
             alt={item.name}
             width={400}

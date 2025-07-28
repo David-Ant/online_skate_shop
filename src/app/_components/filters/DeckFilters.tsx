@@ -52,7 +52,7 @@ export default function DeckFilters({
                                 checked={filters.widths.has(width)}
                                 onChange={() => onToggleWidth(width)}
                             />
-                            <label htmlFor={`width-${width}`}>{width}"</label>
+                            <label htmlFor={`width-${width}`}>{width + '"'}</label>
                         </li>
                     ))}
             </ul>

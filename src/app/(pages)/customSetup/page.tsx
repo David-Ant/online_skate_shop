@@ -5,24 +5,27 @@ import { useState } from "react";
 import ProductPickerModal from "~/app/_components/ProductPickerModal";
 import CustomOrderButton from "~/app/_components/CustomOrderButton";
 import type { stockItem } from "~/types/stock";
+import Image from "next/image";
 
 export const dynamic = "force-dynamic";
 
 export default function ProductPage() {
 
+    const [deck, setDeck] = useState<stockItem | undefined>(undefined);
+    const [wheels, setWheels] = useState<stockItem | undefined>(undefined);
+    const [deckModalOpen, setDeckModalOpen] = useState(false);
+    const [wheelsModalOpen, setWheelsModalOpen] = useState(false);
+    
     const { data: allStock, isLoading, error } = api.stock.getStock.useQuery();
     const deckStock = allStock?.filter((item) => item.type === "DECK");
     const wheelStock = allStock?.filter((item) => item.type === "WHEEL");
+
+    if (isLoading) return <div>Loading...</div>
 
     if (error) {
         console.error("Search error:", error);
         return <div>Error: {error.message}</div>;
     }
-
-    const [deck, setDeck] = useState<stockItem | undefined>(undefined);
-    const [wheels, setWheels] = useState<stockItem | undefined>(undefined);
-    const [deckModalOpen, setDeckModalOpen] = useState(false);
-    const [wheelsModalOpen, setWheelsModalOpen] = useState(false);
 
     const handleDeckSubmit = (value: stockItem): void => {
         setDeck(value);
@@ -50,9 +53,10 @@ export default function ProductPage() {
                         className="w-[250px] h-[250px] flex items-center justify-center rounded-[10px] bg-[#e0e0e0] text-[1rem] text-[#333] font-bold cursor-pointer overflow-hidden transition-colors duration-200 ease-in-out shadow"
                     >
                         {deck ? (
-                            <img
+                            <Image
                                 src={deck.imageUrl}
                                 className="w-[90%] h-[90%] rounded object-cover"
+                                alt={`Deck: ${deck.name}`}
                             />
                         ) : (
                             <p>Select Deck</p>
@@ -62,7 +66,7 @@ export default function ProductPage() {
                         <div>
                             <h2>{deck.name}</h2>
                             <p>Brand: {deck.brand}</p>
-                            <p>Width: {deck.width}"</p>
+                            <p>Width: {deck.width + '"'}</p>
                             <p>Cost: {deck.cost}€</p>
                         </div>
                     ) : (
@@ -75,9 +79,10 @@ export default function ProductPage() {
                         className="w-[250px] h-[250px] flex items-center justify-center rounded-[10px] bg-[#e0e0e0] text-[1rem] text-[#333] font-bold cursor-pointer overflow-hidden transition-colors duration-200 ease-in-out shadow">
 
                         {wheels ? (
-                            <img
+                            <Image
                                 src={wheels.imageUrl}
                                 className="w-[90%] h-[90%] rounded object-cover"
+                                alt={`Wheels: ${wheels.name}`}
                             />
                         ) : (
                             <p>Select Wheels</p>
@@ -114,7 +119,7 @@ export default function ProductPage() {
                     open={deckModalOpen}
                     onClose={() => setDeckModalOpen(false)}
                     filterType="DECK"
-                    content={deckStock || []}
+                    content={deckStock ?? []}
                     handleStockSubmit={handleDeckSubmit}
                 />
             </div>
@@ -123,7 +128,7 @@ export default function ProductPage() {
                     open={wheelsModalOpen}
                     onClose={() => setWheelsModalOpen(false)}
                     filterType="WHEEL"
-                    content={wheelStock || []}
+                    content={wheelStock ?? []}
                     handleStockSubmit={handleWheelsSubmit}
                 />
             </div>

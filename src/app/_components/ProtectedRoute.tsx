@@ -5,7 +5,7 @@ const ProtectedRoute = async ({children}: { children: React.ReactNode }) => {
 
   const session = await auth();
   
-  if (!session || !session.user?.isAdmin) {
+  if (!session?.user?.isAdmin) {
     redirect("/");
   }
 

@@ -1,8 +1,9 @@
 "use client";
 
 import { useSession } from "next-auth/react";
-import { useState } from "react";
+import Image from "next/image";
 import { api } from "~/trpc/react";
+import type { cartItem } from "~/types/stock";
 
 export default function CartPage() {
   return (
@@ -17,28 +18,21 @@ function CartContent() {
     enabled: !!session,
   });
 
-
-  const [loading, setLoading] = useState(false);
-
   const removeFromCart = api.cart.removeFromCart.useMutation({
     onSuccess: () => {
-      refetch();
+      void refetch();
     },
   });
 
   const handleRemove = async (stockId?: string, customOrderId?: string) => {
-    setLoading(true);
     try {
       await removeFromCart.mutateAsync({
         stockId,
         customOrderId
       });
       alert("Item removed!");
-      refetch();
     } catch (error) {
-      console.error("Failed to remove item");
-    } finally {
-      setLoading(false);
+      console.error("Failed to remove item:", error);
     }
   };
 
@@ -71,7 +65,7 @@ function CartContent() {
     return <p>Your cart is empty!</p>;
   }
 
-  function calculateTotal(cartItems: any[]) {
+  function calculateTotal(cartItems: cartItem[]) {
     const total = cartItems.reduce((total, item) => {
       const cost = item.stock?.cost || item.customOrder?.cost || 0;
       return (total + cost);
@@ -87,16 +81,20 @@ function CartContent() {
           <li key={item.id} className="flex justify-between items-center py-4 border-b border-gray-300 last:border-b-0">
             <div className="flex flex-row items-center">
               {item.stock ? (
-                <img src={item.stock.imageUrl} className="w-32 h-32 mr-4" />
+                <Image
+                src={item.stock.imageUrl}
+                className="w-32 h-32 mr-4"
+                alt={item.stock.name}
+                />
               ) : item.customOrder ? (
                 <div className="flex items-center mr-4">
-                  <img
+                  <Image
                     src={item.customOrder.deck?.imageUrl || ""}
                     className="w-32 h-32"
                     alt="Deck"
                   />
                   <span className="mx-2 text-xl font-bold">+</span>
-                  <img
+                  <Image
                     src={item.customOrder.wheels?.imageUrl || ""}
                     className="w-32 h-32"
                     alt="Wheels"
@@ -104,8 +102,8 @@ function CartContent() {
                 </div>
               ) : null}
               <div className="flex flex-col gap-1">
-                <h2 className="text-lg font-medium m-0 mb-1">{item.stock?.name || "Custom Order"}</h2>
-                <p className="text-sm text-gray-600 m-0">Price: {item.stock?.cost || item.customOrder?.cost}€</p>
+                <h2 className="text-lg font-medium m-0 mb-1">{item.stock?.name ?? "Custom Order"}</h2>
+                <p className="text-sm text-gray-600 m-0">Price: {item.stock?.cost ?? item.customOrder?.cost}€</p>
               </div>
             </div>
             <div className="flex flex-col gap-1 items-end">

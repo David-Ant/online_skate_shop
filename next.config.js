@@ -13,6 +13,11 @@ const config = {
         hostname: "9gnhpfz58f.ufs.sh",
         pathname: "/**",
       },
+      {
+        protocol: "https",
+        hostname: "utfs.io",
+        pathname: "/**",
+      },
     ],
   },
 };

@@ -1,3 +1,4 @@
+import Image from "next/image";
 import type { stockItem } from "~/types/stock";
 
 type StockGridProps = {
@@ -16,7 +17,7 @@ export default function StockGrid({ items, onSelect, filterText = "" }: StockGri
         .map((item) => (
           <button key={item.id} onClick={() => onSelect(item)}>
             <div className="flex w-48 flex-col">
-              <img src={item.imageUrl} alt={item.name} />
+              <Image src={item.imageUrl} alt={item.name} />
               <div className="p-3">
                 <div className="text-sm">{item.name}</div>
                 <div className="text-sm">{item.cost}€</div>

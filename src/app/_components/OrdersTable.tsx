@@ -9,7 +9,7 @@ export default function OrdersTable() {
 
     const changeStatus = api.admin.changeStatus.useMutation({
         onSuccess: () => {
-            refetch();
+            void refetch();
         },
     });
 

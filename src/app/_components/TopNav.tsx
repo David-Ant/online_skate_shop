@@ -7,6 +7,7 @@ import { SearchWithButton } from "./SearchButton";
 import SignInButton from "./SignInButton";
 import { AnimatedButton } from "./AnimatedButton";
 import { auth } from "~/server/auth";
+import Image from "next/image";
 
 export async function TopNav() {
     
@@ -18,9 +19,11 @@ export async function TopNav() {
                 <nav className="flex bg-[#202020] items-center justify-between w-full py-3 px-8 text-white font-semibold">
                     <Link href="/">
                         <button>
-                            <img
+                            <Image
                                 src="https://utfs.io/f/db5e70c1-0bb8-4991-80d0-221eea24c410-wtex4j.png"
-                                className="h-[100px] w-[100px]"
+                                width={100}
+                                height={100}
+                                alt="Logo"
                             />
                         </button>
                     </Link>

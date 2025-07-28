@@ -11,7 +11,7 @@ export default function ItemPage() {
   const verifiedId = Array.isArray(id) ? id[0] : id ?? "";
 
   const { data: item, isLoading, error } = api.stock.getItemById.useQuery({
-    id: verifiedId || "",
+    id: verifiedId ?? "",
   })
   if (isLoading) return <div>Loading...</div>
   if (error) {

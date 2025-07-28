@@ -67,7 +67,7 @@ function CartContent() {
 
   function calculateTotal(cartItems: cartItem[]) {
     const total = cartItems.reduce((total, item) => {
-      const cost = item.stock?.cost || item.customOrder?.cost || 0;
+      const cost = item.stock?.cost ?? item.customOrder?.cost ?? 0;
       return (total + cost);
     }, 0);
     return total.toFixed(2);

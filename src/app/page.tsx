@@ -6,12 +6,11 @@ import { BsLightningChargeFill } from "react-icons/bs";
 import { HiMiniChatBubbleOvalLeftEllipsis } from "react-icons/hi2";
 
 export default async function Home() {
-  const session = await auth();
 
   return (
     <main>
       <section className="mt-10 max-w-2xl mx-auto text-center">
-        <h2 className="!text-3xl font-bold mb-4 text-gray-900">Welcome to Waffle's Skate Shop!</h2>
+        <h2 className="!text-3xl font-bold mb-4 text-gray-900">Welcome to Waffle&apos;s Skate Shop!</h2>
         <p className="text-gray-600 mb-4">
           Your one-stop shop for the latest skateboards and gear. For skaters, by skaters.
         </p>
@@ -30,7 +29,7 @@ export default async function Home() {
           </blockquote>
           <blockquote className="bg-gray-100 p-4 rounded shadow text-sm">
             <HiMiniChatBubbleOvalLeftEllipsis className="inline-block mr-2" />
-            Community driven with a focus on skaters' needs.
+            Community driven with a focus on skaters&apos; needs.
           </blockquote>
         </div>
       </section>

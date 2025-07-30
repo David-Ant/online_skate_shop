@@ -17,7 +17,12 @@ export default function StockGrid({ items, onSelect, filterText = "" }: StockGri
         .map((item) => (
           <button key={item.id} onClick={() => onSelect(item)}>
             <div className="flex w-48 flex-col">
-              <Image src={item.imageUrl} alt={item.name} />
+              <Image
+                src={item.imageUrl}
+                alt={item.name}
+                width={192}
+                height={192}
+              />
               <div className="p-3">
                 <div className="text-sm">{item.name}</div>
                 <div className="text-sm">{item.cost}€</div>

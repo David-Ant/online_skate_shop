@@ -53,11 +53,14 @@ export default function ProductPage() {
                         className="w-[250px] h-[250px] flex items-center justify-center rounded-[10px] bg-[#e0e0e0] text-[1rem] text-[#333] font-bold cursor-pointer overflow-hidden transition-colors duration-200 ease-in-out shadow"
                     >
                         {deck ? (
+                            <div className="relative w-[90%] h-[90%]">
                             <Image
                                 src={deck.imageUrl}
-                                className="w-[90%] h-[90%] rounded object-cover"
+                                    fill
+                                    className="rounded object-cover"
                                 alt={`Deck: ${deck.name}`}
                             />
+                            </div>
                         ) : (
                             <p>Select Deck</p>
                         )}
@@ -79,11 +82,14 @@ export default function ProductPage() {
                         className="w-[250px] h-[250px] flex items-center justify-center rounded-[10px] bg-[#e0e0e0] text-[1rem] text-[#333] font-bold cursor-pointer overflow-hidden transition-colors duration-200 ease-in-out shadow">
 
                         {wheels ? (
+                            <div className="relative w-[90%] h-[90%]">
                             <Image
                                 src={wheels.imageUrl}
-                                className="w-[90%] h-[90%] rounded object-cover"
+                                    fill
+                                    className="rounded object-cover"
                                 alt={`Wheels: ${wheels.name}`}
                             />
+                            </div>
                         ) : (
                             <p>Select Wheels</p>
                         )}

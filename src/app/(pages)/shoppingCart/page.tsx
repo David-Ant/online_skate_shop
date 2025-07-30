@@ -82,21 +82,25 @@ function CartContent() {
             <div className="flex flex-row items-center">
               {item.stock ? (
                 <Image
-                src={item.stock.imageUrl}
-                className="w-32 h-32 mr-4"
-                alt={item.stock.name}
+                  src={item.stock.imageUrl}
+                  width={128}
+                  height={128}
+                  className="mr-4"
+                  alt={item.stock.name}
                 />
               ) : item.customOrder ? (
                 <div className="flex items-center mr-4">
                   <Image
                     src={item.customOrder.deck?.imageUrl || ""}
-                    className="w-32 h-32"
+                    width={128}
+                    height={128}
                     alt="Deck"
                   />
                   <span className="mx-2 text-xl font-bold">+</span>
                   <Image
                     src={item.customOrder.wheels?.imageUrl || ""}
-                    className="w-32 h-32"
+                    width={128}
+                    height={128}
                     alt="Wheels"
                   />
                 </div>

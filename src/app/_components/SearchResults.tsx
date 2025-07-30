@@ -27,8 +27,10 @@ export default function SearchResults() {
             <Link href={`/item/${image.id}`} key={image.id}>
               <div key={image.id} className="flex w-48 flex-col">
                 <Image
-                src={image.imageUrl}
-                alt={image.name}
+                  src={image.imageUrl}
+                  alt={image.name}
+                  width={192}
+                  height={192}
                 />
                 <div className="bg-gradient-to-b from-white to-transparent p-3">
                   <div className="text-sm">{image.name}</div>

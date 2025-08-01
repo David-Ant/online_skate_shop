@@ -39,6 +39,7 @@ function CartContent() {
   const createOrder = api.cart.createOrder.useMutation({
     onSuccess: () => {
       alert("Order pending.");
+      void refetch();
     },
     onError: (error) => {
       console.error('Failed to set order', error);

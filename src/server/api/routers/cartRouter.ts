@@ -155,7 +155,10 @@ export const cartRouter = createTRPCRouter({
     const userId = ctx.session.user.id;
 
     return await db.cartItem.findMany({
-      where: { userId },
+      where: {
+        userId,
+        orderId: null,
+      },
       include: {
         stock: true,
         customOrder: {
@@ -172,13 +175,35 @@ export const cartRouter = createTRPCRouter({
   }),
 
   createOrder: protectedProcedure.mutation(async ({ ctx }) => {
-    return db.order.create({
+
+    const userId = ctx.session.user.id;
+
+    const cartItems = await db.cartItem.findMany({
+      where: {
+        userId,
+        orderId: null,
+      },
+    });
+
+    if (cartItems.length === 0) {
+      throw new Error("Cart is empty. Cannot create order.");
+    }
+
+    const order = await db.order.create({
       data: {
         date: new Date(),
         status: "PENDING",
-        userId: ctx.session.user.id,
+        userId,
+        stockItems: {
+          connect: cartItems.map(item => ({ id: item.id })),
       },
+    },
+    include: {
+        stockItems: true,
+    },
     });
+
+    return order;
   }),
 
 });

@@ -8,6 +8,29 @@ export const adminRouter = createTRPCRouter({
     return await db.order.findMany();
   }),
 
+  getOrderById: protectedProcedure
+    .input(z.object({ id: z.string() }))
+    .query(async ({ input }) => {
+      return await db.order.findUnique({
+        where: {
+          id: input.id
+        },
+        include: {
+          stockItems: {
+            include: {
+              stock: true,
+              customOrder: {
+                include: {
+                  deck: true,
+                  wheels: true,
+                }
+              }
+            },
+          }
+        }
+      });
+    }),
+
   changeStatus: protectedProcedure
     .input(
       z.object({

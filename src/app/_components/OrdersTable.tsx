@@ -2,6 +2,7 @@
 
 import { api } from "~/trpc/react";
 import { OrderStatus } from "@prisma/client";
+import Link from "next/link";
 
 export default function OrdersTable() {
 
@@ -28,10 +29,13 @@ export default function OrdersTable() {
         <main>
             <div className="px-6 py-8 bg-white min-w-[80%] max-w-4xl mx-auto rounded-lg shadow-md">
                 {orders.map((item) => (
-                    <li key={item.id} className="flex flex-row justify-between p-4 mb-4 last:mb-0 border-b border-gray-300 last:border-b-0">
-                        <h3>User: {item.userId}</h3>
-                        <h3>Date: {item.date.toString()}</h3>
-                        <h3>
+                    <li key={item.id} className="grid grid-cols-4 items-center w-full p-4 mb-4 last:mb-0 border-b border-gray-300 last:border-b-0">
+                        <Link href={`/adminPanel/order/${item.id}`} key={item.id}>
+                            <h3 className="justify-self-start">View order</h3>
+                        </Link>
+                        <h3 className="justify-self-start">User: {item.userId}</h3>
+                        <h3 className="justify-self-center">Date: {item.date.toString()}</h3>
+                        <h3 className="justify-self-end">
                             Status:
                             <select
                                 value={item.status}

@@ -42,6 +42,6 @@ Follow our deployment guides for [Vercel](https://create.t3.gg/en/deployment/ver
 - Fix custom order images in shopping cart ✔️
 - Properly finish the main page ✔️
 - Add a dark mode
-- Let the admin see which products are in an order
+- Let the admin see which products are in an order ✔️
 - Add a reusable skeleton loader
 - Make UI mobile friendly

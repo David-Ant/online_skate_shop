@@ -23,7 +23,7 @@ export default function ItemPage() {
             <main>
                 <div className="px-6 py-8 bg-white min-w-[80%] max-w-4xl mx-auto rounded-lg shadow-md">
                     {order.stockItems.map((item) => (
-                        <li key={item.id} className="grid grid-cols-3 items-center w-full p-4 mb-4 last:mb-0 border-b border-gray-300 last:border-b-0">
+                        <li key={item.id} className="grid grid-rows-3 md:grid-rows-1 md:grid-cols-3 items-center w-full p-4 mb-4 last:mb-0 border-b border-gray-300 last:border-b-0">
                             <h3 className="justify-self-start">
                                 {item.stock ? (
                                     <Image

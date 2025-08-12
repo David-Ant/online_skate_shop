@@ -48,7 +48,7 @@ export default function ProductPage() {
                     <i>We assemble it for you</i>
                 </div>
             </div>
-            <div className="flex items-start justify-between px-10 py-3 space-x-12">
+            <div className="flex flex-col md:flex-row items-start justify-between px-10 py-3 space-y-12 md:space-x-12">
                 <div className={`flex flex-col items-start justify-start max-w-[260px] rounded-[10px] ${deck ? "bg-white border border-gray-300" : "bg-[#e0e0e0]"} shadow-md`}>
                     <button
                         onClick={() => setDeckModalOpen(true)}
@@ -107,7 +107,7 @@ export default function ProductPage() {
                         <p></p>
                     )}
                 </div>
-                <div className="w-[180px] space-y-4">
+                <div className="w-[180px] self-center space-y-4">
                     <div className={wheels && deck ?
                         "h-[40px] flex items-center justify-center bg-orange-500 border border-white/30 rounded-lg font-semibold text-[16px] text-white cursor-pointer shadow-md"
                         : "h-[40px] flex items-center justify-center bg-gray-500 border border-black/10 rounded-lg font-semibold text-[16px] text-white shadow-inner"}>

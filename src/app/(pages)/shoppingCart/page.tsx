@@ -80,13 +80,13 @@ function CartContent() {
       <ul className="list-none p-0 m-0">
         {cartItems.map((item) => (
           <li key={item.id} className="flex justify-between items-center py-4 border-b border-gray-300 last:border-b-0">
-            <div className="flex flex-row items-center">
+            <div className="flex flex-col md:flex-row items-center">
               {item.stock ? (
                 <Image
                   src={item.stock.imageUrl}
                   width={128}
                   height={128}
-                  className="mr-4"
+                  className="mr-4 shadow-sm"
                   alt={item.stock.name}
                 />
               ) : item.customOrder ? (
@@ -95,6 +95,7 @@ function CartContent() {
                     src={item.customOrder.deck?.imageUrl || ""}
                     width={128}
                     height={128}
+                    className="shadow-sm"
                     alt="Deck"
                   />
                   <span className="mx-2 text-xl font-bold">+</span>
@@ -102,6 +103,7 @@ function CartContent() {
                     src={item.customOrder.wheels?.imageUrl || ""}
                     width={128}
                     height={128}
+                    className="shadow-sm"
                     alt="Wheels"
                   />
                 </div>

@@ -16,7 +16,7 @@ export default async function Home() {
         </p>
       </section>
       <ImageCarousel />
-      <section className="mt-12">
+      <section className="mt-12 mb-8">
         <h2 className="text-xl font-semibold mb-4 text-center">Why Shop With Us?</h2>
         <div className="flex flex-col md:flex-row gap-6 justify-center">
           <blockquote className="bg-gray-100 p-4 rounded shadow text-sm">

@@ -49,7 +49,7 @@ export default function ImageCarousel() {
             : mockImages;
 
     return (
-        <div className="relative w-[60%] aspect-[2/1] mx-auto overflow-hidden rounded-2xl shadow-lg">
+        <div className="relative w-[90%] md:w-[60%] aspect-[2/1] mx-auto overflow-hidden rounded-2xl shadow-lg">
             <div
                 className="flex w-full h-full"
                 style={{

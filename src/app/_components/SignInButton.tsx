@@ -9,8 +9,7 @@ export default function SignInButton() {
   return (
     <div>
       {session?.user ? (
-        <div>
-          <p>Welcome, {session.user.name}!</p>
+        <div className="flex flex-col items-center">
           <AnimatedButton onClick={() => signOut()}>
             Sign out
           </AnimatedButton>

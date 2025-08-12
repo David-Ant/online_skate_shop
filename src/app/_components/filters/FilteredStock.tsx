@@ -142,11 +142,11 @@ export default function FilteredStock({
 
     return (
         <div className="flex h-full">
-            <aside className="w-32 bg-gray-100 overflow-y-auto rounded-l-lg shadow-md relative">
+            <aside className="w-32 min-w-27 bg-gray-100 overflow-y-auto shadow-md relative">
                 <div className="text-lg font-semibold p-4">Filters</div>
                 <div className="p-4">{filters}</div>
             </aside>
-            <div className="flex flex-col items-end bg-white p-2 rounded-r-lg h-full w-full">
+            <div className="flex flex-col items-end bg-white p-2 h-full w-full">
                 <main className="flex-1 overflow-y-scroll w-full">
                     <StockGrid items={filteredContent} onSelect={handleStockSubmit} filterText={search} />
                 </main>

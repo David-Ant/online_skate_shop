@@ -29,7 +29,7 @@ export default function OrdersTable() {
         <main>
             <div className="px-6 py-8 bg-white min-w-[80%] max-w-4xl mx-auto rounded-lg shadow-md">
                 {orders.map((item) => (
-                    <li key={item.id} className="grid grid-cols-4 items-center w-full p-4 mb-4 last:mb-0 border-b border-gray-300 last:border-b-0">
+                    <li key={item.id} className="grid grid-rows-4 md:grid-rows-1 md:grid-cols-4 items-center w-full p-4 mb-4 last:mb-0 border-b border-gray-300 last:border-b-0">
                         <Link href={`/adminPanel/order/${item.id}`} key={item.id}>
                             <h3 className="justify-self-start">View order</h3>
                         </Link>

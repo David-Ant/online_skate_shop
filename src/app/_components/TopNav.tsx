@@ -10,13 +10,13 @@ import { auth } from "~/server/auth";
 import Image from "next/image";
 
 export async function TopNav() {
-    
+
     const session = await auth();
 
     return (
         <header>
             <h1>
-                <nav className="flex bg-[#202020] items-center justify-between w-full py-3 px-8 text-white font-semibold">
+                <nav className="flex bg-[#202020] items-center justify-between w-full p-3 md:py-3 md:px-8 text-white font-semibold">
                     <Link href="/">
                         <button>
                             <Image
@@ -27,19 +27,24 @@ export async function TopNav() {
                             />
                         </button>
                     </Link>
-                    <div className="flex gap-4">
+                    <div className="flex flex-col gap-4">
+                        <div className="flex flex-row items-center">
                         <SignInButton />
                         <Link href="/shoppingCart">
                             <AnimatedButton>
                                 <HiOutlineShoppingCart size={40} />
                             </AnimatedButton>
                         </Link>
+                        </div>
+                        {session?.user ? (
+                            <p>Welcome, {session.user.name}!</p>
+                        ) : null}
                     </div>
                 </nav>
             </h1>
             <h2>
-                <nav className="flex relative bg-white text-black items-center justify-between w-full py-2 pl-[15%] pr-[5%] font-semibold shadow-md">
-                    <nav className="flex bg-white text-black items-center w-1/2 font-semibold">
+                <nav className="relative flex flex-col md:flex-row bg-white text-black items-center justify-between w-full py-2 sm:pl-[15%] sm:pr-[5%] font-semibold shadow-md">
+                    <nav className={`flex ${session?.user?.isAdmin ? "flex-wrap md:flex-nowrap" : "flex-nowrap"} bg-white text-black items-center w-full md:w-1/2 font-semibold`}>
                         {/* If the user is an admin, show the admin panel link */}
                         {session?.user?.isAdmin && (
                             <Link className="option-divider" href="/adminPanel">
